@@ -1,2 +1,2 @@
-# yappers
-A chatting app
+# habit-tracker
+A habit tracking app
