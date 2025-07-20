@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+    background: #f2f2f2;
+}
+
+form {
+    display: flex;
+    gap: 1rem;
+}
+
+#habit-list {
+    margin-top: 2rem;
+}
+
+.habit {
+    background: white;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
