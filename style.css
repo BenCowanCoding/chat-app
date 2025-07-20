@@ -14,13 +14,21 @@ form {
 }
 
 .habit {
-    background: white;
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 body.dark-mode {
     background-color: #121212;
     color: #eeeeee;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: red;
 }
