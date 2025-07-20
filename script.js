@@ -34,7 +34,24 @@ habitForm.addEventListener('submit', e => {
 function addHabitToDOM(habitName) {
   const habitItem = document.createElement('div');
   habitItem.className = 'habit';
-  habitItem.textContent = habitName;
+
+  const habitText = document.createElement('span');
+  habitText.textContent = habitName;
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = '❌';
+  deleteBtn.className = 'delete-btn';
+  deleteBtn.addEventListener('click', () => {
+    // Remove from DOM
+    habitItem.remove();
+
+    // Remove from array
+    habits = habits.filter(h => h !== habitName);
+    localStorage.setItem('habits', JSON.stringify(habits));
+  });
+
+  habitItem.appendChild(habitText);
+  habitItem.appendChild(deleteBtn);
   habitList.appendChild(habitItem);
 }
 
