@@ -1,23 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Habit Tracker</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI plugin -->
+  <script>
+    tailwind.config = {
+      plugins: [daisyui],
+    };
+  </script>
 </head>
-<body>
-  <header>
-    <h1>Habit Tracker</h1>
-    <button id="dark-mode-toggle">Light/Dark Mode</button>
+<body class="bg-base-200 text-base-content p-6 min-h-screen">
+  <header class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Habit Tracker</h1>
+    <button id="dark-mode-toggle" class="btn btn-outline">Light/Dark Mode</button>
   </header>
   
   <main>
-    <form id="habit-form">
-      <input type="text" id="habit-name" placeholder="Enter habit" required />
-      <button type="submit">Add Habit</button>
+    <form id="habit-form" class="flex gap-3 mb-4">
+      <input 
+        type="text" 
+        id="habit-name" 
+        placeholder="Enter habit" 
+        required 
+        class="input input-bordered w-full" 
+      />
+      <button type="submit" class="btn btn-primary">Add Habit</button>
     </form>
-    <section id="habit-list"></section>
+
+    <section id="habit-list" class="space-y-3"></section>
   </main>
 
   <script src="script.js"></script>

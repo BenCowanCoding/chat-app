@@ -58,19 +58,16 @@ function getToday() {
 // Render one habit onto the page
 function addHabitToDOM(habit) {
   const habitItem = document.createElement('div');
-  habitItem.className = 'habit';
+  habitItem.className = 'card bg-base-100 shadow p-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between';
+
+  // ✅ Habit name + streak
+  const leftSection = document.createElement('div');
+  leftSection.className = 'flex items-center gap-3';
 
   const checkBox = document.createElement('input');
   checkBox.type = 'checkbox';
   checkBox.checked = habit.completed;
-
-  const habitText = document.createElement('span');
-  habitText.textContent = habit.name;
-
-  const streakBadge = document.createElement('span');
-  streakBadge.textContent = `Streak: ${habit.streak}`;
-  streakBadge.style.marginLeft = "1rem";
-
+  checkBox.className = 'checkbox checkbox-primary';
   checkBox.addEventListener('change', () => {
     const today = new Date().toISOString().split("T")[0];
     habit.completed = checkBox.checked;
@@ -81,11 +78,7 @@ function addHabitToDOM(habit) {
         yesterday.setDate(yesterday.getDate() - 1);
         const yDate = yesterday.toISOString().split("T")[0];
 
-        if (habit.lastCompleted === yDate) {
-          habit.streak += 1;
-        } else if (habit.lastCompleted !== today) {
-          habit.streak = 1;
-        }
+        habit.streak = (habit.lastCompleted === yDate) ? habit.streak + 1 : 1;
       } else {
         habit.streak = 1;
       }
@@ -93,22 +86,34 @@ function addHabitToDOM(habit) {
       habit.lastCompleted = today;
     }
 
-    streakBadge.textContent = `Streak: ${habit.streak}`;
+    streakBadge.textContent = `🔥 Streak: ${habit.streak}`;
     localStorage.setItem('habits', JSON.stringify(habits));
   });
 
+  const habitText = document.createElement('span');
+  habitText.textContent = habit.name;
+  habitText.className = 'font-medium text-lg';
+
+  const streakBadge = document.createElement('span');
+  streakBadge.textContent = `🔥 Streak: ${habit.streak}`;
+  streakBadge.className = 'badge badge-accent';
+
+  leftSection.appendChild(checkBox);
+  leftSection.appendChild(habitText);
+  leftSection.appendChild(streakBadge);
+
+  // ✅ Delete button
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = '❌';
-  deleteBtn.className = 'delete-btn';
+  deleteBtn.className = 'btn btn-sm btn-outline btn-error';
   deleteBtn.addEventListener('click', () => {
     habitItem.remove();
     habits = habits.filter(h => h !== habit);
     localStorage.setItem('habits', JSON.stringify(habits));
   });
 
-  habitItem.appendChild(checkBox);
-  habitItem.appendChild(habitText);
-  habitItem.appendChild(streakBadge);
+  // ✅ Combine and render
+  habitItem.appendChild(leftSection);
   habitItem.appendChild(deleteBtn);
   habitList.appendChild(habitItem);
 }
