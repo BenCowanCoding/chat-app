@@ -1,5 +1,12 @@
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
 const habitForm = document.getElementById('habit-form');
 const habitList = document.getElementById('habit-list');
+
+darkModeToggle.addEventListener('click', e => {
+    e.preventDefault();
+    document.body.classList.toggle("dark-mode");
+});
 
 habitForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -13,3 +20,4 @@ habitForm.addEventListener('submit', e => {
     habitList.appendChild(habitItem);
     habitForm.reset();
 });
+

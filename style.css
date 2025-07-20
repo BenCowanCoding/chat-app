@@ -19,3 +19,8 @@ form {
     margin-bottom: 0.5rem;
     border-radius: 5px;
 }
+
+body.dark-mode {
+    background-color: #121212;
+    color: #eeeeee;
+}
